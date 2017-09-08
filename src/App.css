@@ -1,10 +1,30 @@
-.todo-list {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
+/*===================================To_Do list horizontal============================= */
+.todo-list{  padding: 10px 20px;  }
+.td-issue-long{  min-width: 350px;  }
+.td-grabber {  height: 100%;  left: 0;  position: absolute;  text-indent: -9999em;  top: 0;  width: 5px;  }
+.td-issue-long {  background: #fff;  border: 1px solid #ccc;  color: #333;  cursor: move;  font-size: 14px;  line-height: 1.42857143;  margin-top: -1px;  position: relative;  }
+.td-issue-long .td-row {  display: block;  height: 22px;  margin: 5px;  position: relative;  }
+.td-issue-long .td-key {  display: inline-block;  vertical-align: middle;  margin-left: 5px;  }
+.td-issue-long .td-type,
+.td-issue-long .td-type img{  height: 16px;  width: 16px;  }
+.td-issue-long .td-summary {  overflow: hidden;  display: inline-block;  vertical-align: middle;  margin-left: 5px;  width: calc(100% - 50px);  }
+.td-issue-long .td-label {  display: inline-block;  }
+.td-issue-long .td-date {  display: inline-block;  position: absolute;  right: 0;  }
+.td-issue-long .td-row-bottom{  padding-left: 20px;  }
+.td-summary span{  white-space: nowrap;  }
+/*===================================================================================== */
 
-.card {
-  width: 30%;
-  min-width: 300px;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import TodoItemLong   from './todo_item_long';
 
 class ToDoList extends Component {
   componentWillMount() {
@@ -9,10 +10,7 @@ class ToDoList extends Component {
 
   renderTodo(todo) {
     return (
-      <div className="card card-block" key={todo.id}>
-        <h4 className="card-title">{todo.title}</h4>
-        <p className="card-text">{todo.description}</p>
-      </div>
+      <TodoItemLong todo={todo}/>
     );
   }
 
