@@ -13,6 +13,7 @@ export default class Content extends Component {
       <div className="td-content" >
         <LeftSideBar/>
         <ToDoList/>
+        <EditToDo/>
       </div>
     );
   }

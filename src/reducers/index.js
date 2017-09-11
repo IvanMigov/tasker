@@ -4,7 +4,7 @@ import currentTodo from './current_todo';
 
 const rootReducer = combineReducers({
   todos: todosReducer,
-  todos: currentTodo
+  todo: currentTodo
 
 });
 

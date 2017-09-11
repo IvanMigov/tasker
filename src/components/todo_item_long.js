@@ -1,11 +1,13 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import logoNormal from '../images/status/normal.png';
 import logoHigh from '../images/status/major.svg';
 import logoLow from '../images/status/minor.svg';
+import {SetToDo} from '../actions';
 
 
-export default class TodoItemLong extends Component {
+
+class TodoItemLong extends Component {
   getImgPriority(priority) {
     let logoImg = logoNormal;
     switch (priority) {
@@ -34,11 +36,15 @@ export default class TodoItemLong extends Component {
 
     return {backgroundColor}
   }
+  callClick() {
+    const {SetToDo,todo} = this.props;
+    SetToDo(todo);
+  }
 
   render() {
     const {id,date,label,title,status,priority} = this.props.todo;
     return (
-      <div className="td-issue-long"  >
+      <div className="td-issue-long"  onClick={this.callClick.bind(this)}>
         <div className="td-issue-content" >
           <div className="td-row">
             <span className="td-type" title={priority}>
@@ -67,3 +73,4 @@ export default class TodoItemLong extends Component {
     );
   }
 }
+export default connect(null , {SetToDo})(TodoItemLong);
