@@ -10,7 +10,7 @@ class ToDoList extends Component {
 
   renderTodo(todo) {
     return (
-      <TodoItemLong todo={todo}/>
+      <TodoItemLong todo={todo} key={todo.id}/>
     );
   }
 

@@ -38,8 +38,8 @@ export default class TodoItemLong extends Component {
   render() {
     const {id,date,label,title,status,priority} = this.props.todo;
     return (
-      <div className="td-issue-long"  key={id}>
-        <div className="td-issue-content">
+      <div className="td-issue-long"  >
+        <div className="td-issue-content" >
           <div className="td-row">
             <span className="td-type" title={priority}>
               {this.getImgPriority(priority)}

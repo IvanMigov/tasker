@@ -1,5 +1,6 @@
 export default function({ dispatch }) {
   return next => action => {
+    debugger;
     if (!action.payload || !action.payload.then) {
       return next(action);
     }

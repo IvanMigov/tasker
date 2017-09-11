@@ -15,7 +15,7 @@ export default class LeftSideBar extends Component {
         </div>
         <div className="td-left-bar-content">
           <ul className="list-group">
-            <li className="list-group-item">
+            <li className="list-group-item active">
               <img src={listHorizontal}/>
             </li>
             <li className="list-group-item">
