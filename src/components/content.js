@@ -8,7 +8,6 @@ import Filters   from './todo-filters';
 
 
 export default class Content extends Component {
-
   render() {
     return (
       <div className="td-content" >

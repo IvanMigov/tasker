@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import logoNormal from '../images/status/normal.png';
 import logoHigh from '../images/status/major.svg';
 import logoLow from '../images/status/minor.svg';
-import {SetToDo} from '../actions';
+import {GetToDo} from '../actions';
 
 
 
@@ -37,8 +37,8 @@ class TodoItemLong extends Component {
     return {backgroundColor}
   }
   callClick() {
-    const {SetToDo,todo} = this.props;
-    SetToDo(todo);
+    const {GetToDo,todo} = this.props;
+    GetToDo(todo.id);
   }
 
   render() {
@@ -73,4 +73,4 @@ class TodoItemLong extends Component {
     );
   }
 }
-export default connect(null , {SetToDo})(TodoItemLong);
+export default connect(null , {GetToDo})(TodoItemLong);

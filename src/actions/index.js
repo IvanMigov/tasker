@@ -1,17 +1,21 @@
 import axios from 'axios';
-import {FETCH_TODOS,SET_CURRENT_TODO} from './types';
+import {FETCH_TODOS,FETCH_TODO_BY_ID} from './types';
+
+const requestUrl = 'http://localhost:3004/todos';
 
 export function fetchTodos() {
-  const request = axios.get(' http://localhost:3004/todos');
+  const request = axios.get(requestUrl);
 
   return {
     type: FETCH_TODOS,
     payload: request
   };
 }
-export function SetToDo(todo) {
+export function GetToDo(id) {
+  const request = axios.get(`${requestUrl}/${id}`);
+
   return {
-    type: SET_CURRENT_TODO,
-    payload: todo
+    type: FETCH_TODO_BY_ID,
+    payload: request
   };
 }
