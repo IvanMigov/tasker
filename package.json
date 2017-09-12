@@ -8,12 +8,13 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.12",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-form": "^7.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "watch-less": "grunt watch",
-    "jserv":"json-server --watch db.json --port 3004",
+    "jserv": "json-server --watch db.json --port 3004",
     "dev": "concurrently --kill-others \"json-server --watch db.json --port 3004\" \"npm run watch-less\" \"npm run start\"",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

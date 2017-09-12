@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
 import todosReducer from './todos';
 import currentTodo from './current_todo';
+import {reducer as reduxFormReducer} from 'redux-form'
+
 
 const rootReducer = combineReducers({
   todos: todosReducer,
-  todo: currentTodo
+  form: reduxFormReducer,
+  todo: currentTodo,
 
 });
 
