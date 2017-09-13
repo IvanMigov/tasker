@@ -4,11 +4,14 @@ import { Field, reduxForm } from 'redux-form'
 import * as actions from '../actions';
 
 class EditToDoForm extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.GetToDo(this.props.match.params.ToDoId);
   }
   componentWillReceiveProps(nextProps){
-    this.props.GetToDo(this.props.match.params.ToDoId);
+    if(nextProps.match.params.ToDoId !== this.props.match.params.ToDoId){
+      this.props.GetToDo(nextProps.match.params.ToDoId );
+    }
+
   }
 
   render() {
