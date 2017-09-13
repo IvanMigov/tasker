@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import * as actions from '../actions';
 import TodoItemLong   from './todo_item_long';
 
@@ -10,7 +11,9 @@ class ToDoList extends Component {
 
   renderTodo(todo) {
     return (
-      <TodoItemLong todo={todo} key={todo.id}/>
+      <Link to={{ pathname: `/todos/${todo.id }`}}  key={todo.id} >
+        <TodoItemLong todo={todo}/>
+      </Link>
     );
   }
 

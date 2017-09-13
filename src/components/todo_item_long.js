@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import logoNormal from '../images/status/normal.png';
 import logoHigh from '../images/status/major.svg';
 import logoLow from '../images/status/minor.svg';
-import {GetToDo} from '../actions';
 
 
 
@@ -36,22 +35,19 @@ class TodoItemLong extends Component {
 
     return {backgroundColor}
   }
-  callClick() {
-    const {GetToDo,todo} = this.props;
-    GetToDo(todo.id);
-  }
+
 
   render() {
     const {id,date,label,title,status,priority} = this.props.todo;
     return (
-      <div className="td-issue-long"  onClick={this.callClick.bind(this)}>
+      <div className="td-issue-long">
         <div className="td-issue-content" >
           <div className="td-row">
             <span className="td-type" title={priority}>
               {this.getImgPriority(priority)}
             </span>
             <div className="td-key">
-              <a href="" title={id} className="td-key-link">{id}</a>
+              <span  title={id} className="td-key-link">{id}</span>
             </div>
             <div className="td-summary" title={title}>
               <span className="td-inner">{title}</span>
@@ -73,4 +69,4 @@ class TodoItemLong extends Component {
     );
   }
 }
-export default connect(null , {GetToDo})(TodoItemLong);
+export default TodoItemLong;

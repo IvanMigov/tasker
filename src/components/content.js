@@ -9,10 +9,9 @@ import Filters   from './todo-filters';
 export default function(ComposedComponent){
   class Content extends Component {
     getChildComponent(){
-      return ComposedComponent ? <ComposedComponent/> : '';
+      return ComposedComponent ? <ComposedComponent {...this.props}/> : '';
     }
     render() {
-      console.log('ComposedComponent',ComposedComponent);
       return (
         <div className="td-content" >
           <LeftSideBar/>

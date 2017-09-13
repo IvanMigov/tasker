@@ -24,7 +24,7 @@ ReactDOM.render(
       <div>
           <Header/>
           <Switch>
-            <Route path="/todos/:id" component={Content(EditToDoForm)}/>
+            <Route path="/todos/:ToDoId" component={Content(EditToDoForm)}/>
             <Route path="/todos" component={Content()}/>
             <Redirect from='/' to='/todos'/>
           </Switch>
