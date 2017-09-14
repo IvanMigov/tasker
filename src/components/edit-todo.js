@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form'
+import Loader from './loader'
 import * as actions from '../actions';
 
 class EditToDoForm extends Component {
@@ -13,11 +14,19 @@ class EditToDoForm extends Component {
     }
 
   }
-
   render() {
-    const { handleSubmit, pristine, reset, submitting } = this.props;
+    const { handleSubmit, pristine, reset, submitting, initialValues } = this.props;
+    if(!initialValues){
+      return (
+        <div className="td-edit">
+          <Loader/>
+        </div>
+      )
+    }
     return (
+    <div className="td-edit">
       <form onSubmit={handleSubmit}>
+        <span>{initialValues.id}</span>
         <div>
           <label>First Name</label>
           <div>
@@ -38,6 +47,7 @@ class EditToDoForm extends Component {
           </button>
         </div>
       </form>
+    </div>
     )
 
   }

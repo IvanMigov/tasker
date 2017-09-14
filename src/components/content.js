@@ -19,7 +19,6 @@ export default function(ComposedComponent){
             <Filters/>
             <div className="td-content-list">
               <ToDoList/>
-              <div className="td-test"></div>
               {this.getChildComponent()}
             </div>
           </div>
