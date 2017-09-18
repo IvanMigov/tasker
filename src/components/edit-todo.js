@@ -32,17 +32,18 @@ class EditToDoForm extends Component {
     return (
       <div className="td-edit">
         <form onSubmit={handleSubmit}>
-          <div className="td-data-row">
-            <span className="td-data-is">{initialValues.id}</span>
+          <div className="td-row-id">
+            <span className="td-data-id">{initialValues.id}</span>
             <span className="td-data-date">{initialValues.date}</span>
             <Link to={{pathname: `/todos`}}>
               <span className="td-detail-close-icon"></span>
             </Link>
 
           </div>
-          <div className="td-data-row">
+          <div className="td-data-title">
             <div>
               <Field
+                className="form-control"
                 name="title"
                 component="input"
                 type="text"
@@ -51,9 +52,9 @@ class EditToDoForm extends Component {
             </div>
           </div>
           <div className="td-data-row">
-            <label>Status</label>
+            <label className="">Status</label>
             <div>
-              <Field name="status" component="select">
+              <Field name="status" component="select" className="form-control">
                 {statusList.map(statusOption =>
                   <option value={statusOption} key={statusOption}>
                     {statusOption}
@@ -66,7 +67,7 @@ class EditToDoForm extends Component {
           <div className="td-data-row">
             <label>Priority</label>
             <div>
-              <Field name="priority" component="select">
+              <Field name="priority" component="select" className="form-control">
                 {priorityList.map(priorityOption =>
                   <option value={priorityOption} key={priorityOption}>
                     {priorityOption}
@@ -79,6 +80,7 @@ class EditToDoForm extends Component {
             <label>Label</label>
             <div>
               <Field
+                className="form-control"
                 name="label"
                 component="input"
                 type="text"
@@ -86,16 +88,16 @@ class EditToDoForm extends Component {
               />
             </div>
           </div>
-          <div className="td-data-row">
+          <div className="td-data-description">
             <label>Description</label>
             <div>
-              <Field name="description" component="textarea"/>
+              <Field name="description" component="textarea" className="form-control" />
             </div>
           </div>
 
 
           <div>
-            <button type="submit" disabled={pristine || submitting}>
+            <button className="btn btn-success" type="submit" >
               Save
             </button>
           </div>
