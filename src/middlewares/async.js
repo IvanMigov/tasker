@@ -6,6 +6,7 @@ export default function({ dispatch }) {
     action.payload
       .then(function(response) {
         const newAction = { ...action, payload: response };
+        newAction.callback && newAction.callback();
         dispatch(newAction);
       });
   }

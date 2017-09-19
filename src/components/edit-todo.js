@@ -19,6 +19,12 @@ class EditToDoForm extends Component {
     }
 
   }
+  onSubmit(values){
+    this.props.saveToDo(values,()=>{
+      this.props.fetchTodos()
+    });
+    this.props.setToDo(null);
+  }
 
   render() {
     const {handleSubmit, pristine, reset, submitting, initialValues} = this.props;
@@ -31,7 +37,7 @@ class EditToDoForm extends Component {
     }
     return (
       <div className="td-edit">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className="td-row-id">
             <span className="td-data-id">{initialValues.id}</span>
             <span className="td-data-date">{initialValues.date}</span>
@@ -63,7 +69,6 @@ class EditToDoForm extends Component {
               </Field>
             </div>
           </div>
-
           <div className="td-data-row">
             <label>Priority</label>
             <div>
@@ -97,7 +102,7 @@ class EditToDoForm extends Component {
 
 
           <div>
-            <button className="btn btn-success" type="submit" >
+            <button className="btn btn-success" type="submit" disabled={pristine || submitting}>
               Save
             </button>
           </div>

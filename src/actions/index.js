@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {FETCH_TODOS,FETCH_TODO_BY_ID} from './types';
+import {FETCH_TODOS, FETCH_TODO_BY_ID, PATCH_TODO, SET_CURRENT_TODO} from './types';
 
 const requestUrl = 'http://localhost:3004/todos';
 
@@ -17,5 +17,22 @@ export function GetToDo(id) {
   return {
     type: FETCH_TODO_BY_ID,
     payload: request
+  };
+}
+export function saveToDo(todo, callback) {
+  const request = axios.patch(`${requestUrl}/${todo.id}`,todo);//.then(()=>{callback()});
+
+  return {
+    type: PATCH_TODO,
+    payload: request,
+    callback
+  };
+}
+
+export function setToDo(todo) {
+
+  return {
+    type: SET_CURRENT_TODO,
+    payload: todo
   };
 }
