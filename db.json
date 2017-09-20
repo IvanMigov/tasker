@@ -17,7 +17,7 @@
       "status": "InProgress",
       "priority": "normal",
       "toDoStatus": "ToDo",
-      "title": "251 Resolve issue",
+      "title": "251 Resolve issue 258",
       "description": "Resolve issue in css88"
     },
     {
@@ -27,14 +27,14 @@
       "status": "InProgress",
       "priority": "normal",
       "toDoStatus": "ToDo",
-      "title": "252 Feed a cat package and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their i",
+      "title": "252/3 Feed a cat package and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their i",
       "description": "Buy a feed for a cat"
     },
     {
       "id": 253,
       "date": "06/15/2017",
       "label": "home",
-      "status": "Closed",
+      "status": "ToDo",
       "priority": "low",
       "toDoStatus": "ToDo",
       "title": "253 Repair shuffle",

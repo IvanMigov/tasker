@@ -16,7 +16,11 @@ class ToDoList extends Component {
     };
   }
   getClassName(id){
-    return id.toString() === this.state.activeTodo ? 'td-active' : '';
+    let className = '';
+    if(id && this.state.activeTodo){
+      className = id.toString() === this.state.activeTodo.toString() ? 'td-active' : '';
+    }
+    return className;
   }
   setActive(id){
     this.setState({activeTodo: id});
