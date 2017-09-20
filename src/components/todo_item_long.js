@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import logoNormal from '../images/status/normal.png';
 import logoHigh from '../images/status/major.svg';
 import logoLow from '../images/status/minor.svg';
@@ -16,10 +15,12 @@ class TodoItemLong extends Component {
       case  'high':
         logoImg = logoHigh;
         break;
+      default:
+        logoImg = logoNormal;
     }
 
     return (
-      <img src={logoImg}/>
+      <img src={logoImg} alt="priority"/>
     );
   }
   getColorStatus(status) {
@@ -31,16 +32,21 @@ class TodoItemLong extends Component {
       case  'Closed':
         backgroundColor = '#1d750c';
         break;
+      default:
+        backgroundColor = '#bfe4ff';
     }
 
     return {backgroundColor}
+  }
+  fireClick(){
+    this.props.fireOnClick(this.props.todo.id);
   }
 
 
   render() {
     const {id,date,label,title,status,priority} = this.props.todo;
     return (
-      <div className="td-issue-long">
+      <div className="td-issue-long" onClick={this.fireClick.bind(this)}>
         <div className="td-issue-content" >
           <div className="td-row">
             <span className="td-type" title={priority}>

@@ -18,7 +18,7 @@ export default function(ComposedComponent){
           <div className="td-content-main">
             <Filters/>
             <div className="td-content-list">
-              <ToDoList/>
+              <ToDoList {...this.props}/>
               {this.getChildComponent()}
             </div>
           </div>

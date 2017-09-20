@@ -17,9 +17,11 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 const createStoreWithMiddleware = applyMiddleware(Async)(createStore);
+const store = createStoreWithMiddleware(reducers);
+window.store = store;
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <BrowserRouter>
       <div>
           <Header/>

@@ -13,12 +13,6 @@ class EditToDoForm extends Component {
     this.props.GetToDo(this.props.match.params.ToDoId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.ToDoId !== this.props.match.params.ToDoId) {
-      this.props.GetToDo(nextProps.match.params.ToDoId);
-    }
-
-  }
   onSubmit(values){
     this.props.saveToDo(values,()=>{
       this.props.fetchTodos()
@@ -27,7 +21,7 @@ class EditToDoForm extends Component {
   }
 
   render() {
-    const {handleSubmit, pristine, reset, submitting, initialValues} = this.props;
+    const {handleSubmit, pristine, submitting, initialValues} = this.props;
     if (!initialValues) {
       return (
         <div className="td-edit">
@@ -112,7 +106,10 @@ class EditToDoForm extends Component {
 
   }
 }
-
+const mapStateToProps = (state) => ({
+  initialValues: state.todo,
+  todo: state.todo
+});
 
 EditToDoForm = reduxForm({
   form: 'initializeFromState',
@@ -120,9 +117,7 @@ EditToDoForm = reduxForm({
 })(EditToDoForm);
 
 EditToDoForm = connect(
-  state => ({
-    initialValues: state.todo // pull initial values from account reducer
-  }),
+  mapStateToProps,
   actions
 )(EditToDoForm);
 

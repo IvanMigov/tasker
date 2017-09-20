@@ -8,11 +8,25 @@ class ToDoList extends Component {
   componentWillMount() {
     this.props.fetchTodos();
   }
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeTodo: props.match.params.ToDoId
+    };
+  }
+  getClassName(id){
+    return id.toString() === this.state.activeTodo ? 'td-active' : '';
+  }
+  setActive(id){
+    this.setState({activeTodo: id});
+    this.props.GetToDo(id);
+  }
 
   renderTodo(todo) {
     return (
-      <Link to={{ pathname: `/todos/${todo.id }`}}  key={todo.id} >
-        <TodoItemLong todo={todo}/>
+      <Link to={{ pathname: `/todos/${todo.id }`}} key={todo.id} className={this.getClassName(todo.id)}>
+        <TodoItemLong todo={todo} fireOnClick = {this.setActive.bind(this)}/>
       </Link>
     );
   }
@@ -21,7 +35,7 @@ class ToDoList extends Component {
     return (
       <div className="todo-list">
         {
-          this.props.todos.map(this.renderTodo)
+          this.props.todos.map(this.renderTodo.bind(this))
         }
       </div>
     );
@@ -29,7 +43,10 @@ class ToDoList extends Component {
 }
 
 function mapStateToProps(state) {
-  return { todos: state.todos };
+  return {
+    todos: state.todos
+
+  };
 }
 
 export default connect(mapStateToProps, actions)(ToDoList);

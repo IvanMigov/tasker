@@ -1,6 +1,4 @@
 import {FETCH_TODO_BY_ID,SET_CURRENT_TODO,PATCH_TODO} from '../actions/types';
-import * as actions from '../actions';
-
 
 export default function (state = null, action) {
   switch (action.type) {
@@ -10,7 +8,9 @@ export default function (state = null, action) {
       return action.payload;
     case PATCH_TODO:
       return action.payload.data;
+    default:
+      return state;
+
   }
 
-  return state;
 }

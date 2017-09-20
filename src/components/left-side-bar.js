@@ -16,10 +16,10 @@ export default class LeftSideBar extends Component {
         <div className="td-left-bar-content">
           <ul className="list-group">
             <li className="list-group-item active">
-              <img src={listHorizontal}/>
+              <img src={listHorizontal} alt="All tasks"/>
             </li>
             <li className="list-group-item">
-              <img src={currentTodo}/>
+              <img src={currentTodo} alt="Progress"/>
             </li>
           </ul>
         </div>
