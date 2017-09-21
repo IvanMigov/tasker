@@ -17,7 +17,11 @@ class EditToDoForm extends Component {
   }
 
   render() {
-    return ToDoForm({...this.props,onSubmit: this.onSubmit.bind(this)});
+    const additionalProps ={
+      onSubmit: this.onSubmit.bind(this),
+      formClass:'td-edit'
+    };
+    return ToDoForm({...this.props,...additionalProps});
   }
 }
 const mapStateToProps = (state) => ({

@@ -4,3 +4,4 @@ export const PATCH_TODO = 'patch_todo';
 export const SET_CURRENT_TODO = 'set_current_todo';
 export const CHANGE_VISIBILITY = 'change_visibility';
 export const SET_MODAL_COMPONENT = 'set_modal_component';
+export const CREATE_TODO = 'create_todo';

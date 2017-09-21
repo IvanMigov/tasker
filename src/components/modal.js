@@ -24,19 +24,14 @@ class Modal extends React.Component {
 
     // The modal "window"
     const modalStyle = {
-      backgroundColor: '#fff',
-      borderRadius: 5,
-      maxWidth: 500,
-      minHeight: 300,
-      margin: '0 auto',
-      padding: 30,
+      display: 'flex',
+      justifyContent: 'center',
       zIndex: 1051
     };
     const ChildComponent = this.props.modal.child[0];
     return (
       <div className="td-modal" style={backdropStyle} >
         <div className="td-modal-content" style={modalStyle} >
-          <h1>modal wrapper</h1>
           <ChildComponent/>
         </div>
       </div>

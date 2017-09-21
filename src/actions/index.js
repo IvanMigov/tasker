@@ -5,7 +5,8 @@ import {
   PATCH_TODO,
   SET_CURRENT_TODO,
   CHANGE_VISIBILITY,
-  SET_MODAL_COMPONENT
+  SET_MODAL_COMPONENT,
+  CREATE_TODO
 } from './types';
 
 const requestUrl = 'http://localhost:3004/todos';
@@ -27,10 +28,19 @@ export function GetToDo(id) {
   };
 }
 export function saveToDo(todo, callback) {
-  const request = axios.patch(`${requestUrl}/${todo.id}`,todo);//.then(()=>{callback()});
+  const request = axios.patch(`${requestUrl}/${todo.id}`,todo);
 
   return {
     type: PATCH_TODO,
+    payload: request,
+    callback
+  };
+}
+export function saveNewToDo(todo, callback) {
+  const request = axios.post(`${requestUrl}`,todo);
+
+  return {
+    type: CREATE_TODO,
     payload: request,
     callback
   };

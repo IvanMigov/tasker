@@ -7,16 +7,16 @@ const statusList = ['ToDo', 'InProgress', 'Closed'];
 const priorityList = ['low', 'normal', 'high'];
 
 let ToDoForm = props => {
-  const {handleSubmit, pristine, submitting, initialValues,onSubmit} = props;
+  const {handleSubmit, pristine, submitting, initialValues,onSubmit,formClass} = props;
   if (!initialValues) {
     return (
-      <div className="td-edit">
+      <div className={formClass}>
         <Loader/>
       </div>
     )
   }
   return (
-    <div className="td-edit">
+    <div className={formClass}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="td-row-id">
           <span className="td-data-id">{initialValues.id}</span>

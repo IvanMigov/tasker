@@ -2,13 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Component } from 'react';
 import * as actions from '../actions';
-import TestModal from './testModal';
+import NewToDoForm from './new-todo';
 
 
 
 class Header extends Component {
   onCreate(){
-    this.props.setModalComponents(TestModal);
+    this.props.setModalComponents(NewToDoForm);
     this.props.showHideModal(true);
   }
 

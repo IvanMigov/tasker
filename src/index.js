@@ -10,6 +10,7 @@ import Content from './components/content';
 import Header from './components/header';
 import Modal from './components/modal';
 import EditToDoForm   from './components/edit-todo';
+import NewToDoForm   from './components/new-todo';
 
 import reducers from './reducers';
 import Async from './middlewares/async';

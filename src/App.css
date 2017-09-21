@@ -107,6 +107,22 @@
     border-color: #848484;
 }
 /*===================================================================================== */
+
+/*===================================New To_Do============================================ */
+.td-new{
+    width: 400px;
+    /*height: 500px;*/
+    margin: -500px auto 0;
+    outline: 1px solid #cccccc;
+    z-index: 10;
+    background-color: #fff;
+    /*position: absolute!important;*/
+    /*bottom: 50px;*/
+    /*left: 50%;*/
+
+}
+/*===================================================================================== */
+
 /*===================================Edit To_Do============================================ */
 .td-detail-close-icon{
     display: block;
@@ -114,7 +130,8 @@
     height: 25px;
     background-image: url("./images/icons/ic_close.svg");
 }
-.td-edit{
+.td-edit,
+.td-new{
     width: 400px;
     border: 1px solid #ccc;
     margin-left: -1px;
@@ -179,7 +196,8 @@
     padding: 2px 30px 2px 5px;
     resize: none;
 }
-.td-edit .btn-success{
+.td-edit .btn-success,
+.td-new .btn-success{
     margin: 10px 10px 10px 0;
 }
 
