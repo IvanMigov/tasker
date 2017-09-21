@@ -8,6 +8,7 @@ import './css/main.css';
 import './App.css';
 import Content from './components/content';
 import Header from './components/header';
+import Modal from './components/modal';
 import EditToDoForm   from './components/edit-todo';
 
 import reducers from './reducers';
@@ -25,6 +26,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
           <Header/>
+          <Modal/>
           <Switch>
             <Route path="/todos/:ToDoId" component={Content(EditToDoForm)}/>
             <Route path="/todos" component={Content()}/>

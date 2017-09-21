@@ -1,5 +1,12 @@
 import axios from 'axios';
-import {FETCH_TODOS, FETCH_TODO_BY_ID, PATCH_TODO, SET_CURRENT_TODO} from './types';
+import {
+  FETCH_TODOS,
+  FETCH_TODO_BY_ID,
+  PATCH_TODO,
+  SET_CURRENT_TODO,
+  CHANGE_VISIBILITY,
+  SET_MODAL_COMPONENT
+} from './types';
 
 const requestUrl = 'http://localhost:3004/todos';
 
@@ -34,5 +41,20 @@ export function setToDo(todo) {
   return {
     type: SET_CURRENT_TODO,
     payload: todo
+  };
+}
+
+export function showHideModal(visibility) {
+
+  return {
+    type: CHANGE_VISIBILITY,
+    payload: visibility
+  };
+}
+export function setModalComponents(component) {
+
+  return {
+    type: SET_MODAL_COMPONENT,
+    payload: component
   };
 }

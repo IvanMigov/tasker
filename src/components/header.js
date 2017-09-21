@@ -1,8 +1,16 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { Component } from 'react';
+import * as actions from '../actions';
+import TestModal from './testModal';
 
 
-export default class Header extends Component {
+
+class Header extends Component {
+  onCreate(){
+    this.props.setModalComponents(TestModal);
+    this.props.showHideModal(true);
+  }
 
   render() {
     return (
@@ -11,7 +19,12 @@ export default class Header extends Component {
 
         </div>
         <div className="td-header-content">
-          <button type="button" className="btn btn-primary btn-md">Create</button>
+          <button
+            type="button"
+            className="btn btn-primary btn-md"
+            onClick={this.onCreate.bind(this)}
+          >Create
+          </button>
           <button type="button" className="btn btn-md disabled">LogIn</button>
         </div>
 
@@ -19,3 +32,10 @@ export default class Header extends Component {
     );
   }
 }
+
+Header = connect(
+  null,
+  actions
+)(Header);
+
+export default Header
