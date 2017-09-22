@@ -15,10 +15,15 @@ class EditToDoForm extends Component {
     });
     this.props.setToDo(null);
   }
+  onClose() {
+    this.props.history.push('/todos')
+  }
+
 
   render() {
     const additionalProps ={
       onSubmit: this.onSubmit.bind(this),
+      onClose: this.onClose.bind(this),
       formClass:'td-edit'
     };
     return ToDoForm({...this.props,...additionalProps});

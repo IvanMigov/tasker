@@ -129,6 +129,10 @@
     width: 25px;
     height: 25px;
     background-image: url("./images/icons/ic_close.svg");
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
 }
 .td-edit,
 .td-new{
@@ -170,11 +174,11 @@
 .td-data-row span{
 
 }
-.td-row-id a{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-}
+/*.td-row-id a{*/
+    /*position: absolute;*/
+    /*top: 5px;*/
+    /*right: 5px;*/
+/*}*/
 
 .td-row-id{
     margin-top: 0;

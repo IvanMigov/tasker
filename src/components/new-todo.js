@@ -19,18 +19,24 @@ const initialValues = {
 class NewToDoForm extends Component {
 
   onSubmit(values){
+    values = {...values, date: this.getDataFormated()};
     this.props.saveNewToDo({...initialValues,...values},()=>{
       this.props.fetchTodos();
       this.props.showHideModal(false);
     });
     console.log('new values',{...initialValues,...values});
   }
+  onClose() {
+    this.props.showHideModal(false);
+  }
   getDataFormated(){
-      return '11/11/2017'
+    const thisDate = new Date();
+      return `${(thisDate.getMonth() + 1)}/${thisDate.getDate()}/${thisDate.getFullYear()}`
   }
   render() {
     const additionalProps ={
       onSubmit: this.onSubmit.bind(this),
+      onClose: this.onClose.bind(this),
       formClass:'td-new',
       initialValues
 

@@ -7,7 +7,7 @@ const statusList = ['ToDo', 'InProgress', 'Closed'];
 const priorityList = ['low', 'normal', 'high'];
 
 let ToDoForm = props => {
-  const {handleSubmit, pristine, submitting, initialValues,onSubmit,formClass} = props;
+  const {handleSubmit, pristine, submitting, initialValues,onSubmit,onClose,formClass} = props;
   if (!initialValues) {
     return (
       <div className={formClass}>
@@ -21,9 +21,7 @@ let ToDoForm = props => {
         <div className="td-row-id">
           <span className="td-data-id">{initialValues.id}</span>
           <span className="td-data-date">{initialValues.date}</span>
-          <Link to={{pathname: `/todos`}}>
-            <span className="td-detail-close-icon"></span>
-          </Link>
+          <span className="td-detail-close-icon" onClick={onClose}></span>
 
         </div>
         <div className="td-data-title">
