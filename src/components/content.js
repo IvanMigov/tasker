@@ -9,7 +9,7 @@ import Filters   from './todo-filters';
 export default function(ComposedComponent){
   class Content extends Component {
     getChildComponent(){
-      return ComposedComponent ? <ComposedComponent {...this.props}/> : '';
+      return ComposedComponent ? <ComposedComponent {...this.props}/> : null;
     }
     render() {
       return (

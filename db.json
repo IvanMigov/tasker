@@ -7,7 +7,7 @@
       "status": "ToDo",
       "priority": "high",
       "toDoStatus": "ToDo",
-      "title": "250 Home cleaning 1015",
+      "title": "250 Home cleaning ",
       "description": "Wash dishes and flore"
     },
     {
@@ -41,64 +41,24 @@
       "description": "Repair kitchen shuffle"
     },
     {
-      "date": "06/23/2017",
-      "label": "work",
-      "status": "InProgress",
+      "date": "9/25/2017",
+      "title": "szdfbsdfb",
+      "label": "sdfb",
+      "status": "ToDo",
       "priority": "normal",
       "toDoStatus": "ToDo",
-      "title": "254 Resolve issue",
-      "description": "Resolve issue in css88",
+      "description": "sdfbsdfb",
       "id": 254
     },
     {
-      "date": "06/23/2017",
-      "label": "work",
-      "status": "InProgress",
+      "date": "9/25/2017",
+      "title": "sdfbsdfb 4444444444444",
+      "label": "sdfbsd",
+      "status": "ToDo",
       "priority": "normal",
       "toDoStatus": "ToDo",
-      "title": "255 Resolve issue",
-      "description": "Resolve issue in css88",
+      "description": "fbdsfbdsfb sdf bdsf",
       "id": 255
-    },
-    {
-      "date": "",
-      "title": "111",
-      "label": "",
-      "status": "ToDo",
-      "priority": "normal",
-      "toDoStatus": "ToDo",
-      "description": "",
-      "id": 256
-    },
-    {
-      "date": "",
-      "title": "sdfbsdfb",
-      "label": "sdfbsfbsdfb",
-      "status": "InProgress",
-      "priority": "normal",
-      "toDoStatus": "ToDo",
-      "description": "sdfbsdfb 2 2424 ",
-      "id": 257
-    },
-    {
-      "date": "9/22/2017",
-      "title": "rrrrrrrrrrrrrrrrrrrr",
-      "label": "cat",
-      "status": "Closed",
-      "priority": "low",
-      "toDoStatus": "ToDo",
-      "description": "66666666666666666 666",
-      "id": 258
-    },
-    {
-      "date": "9/22/2017",
-      "title": "33333",
-      "label": "",
-      "status": "ToDo",
-      "priority": "normal",
-      "toDoStatus": "ToDo",
-      "description": "",
-      "id": 259
     }
   ]
 }

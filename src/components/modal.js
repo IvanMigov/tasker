@@ -1,16 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 
 class Modal extends React.Component {
-  render() {
-    // Render nothing if the "show" prop is false
-    console.log('Modal',this.props);
-    if(!this.props.modal.show) {
-      return null;
-    }
-
-    // The gray background
+  getChildContent(){
     const backdropStyle = {
       position: 'fixed',
       top: 0,
@@ -29,12 +23,38 @@ class Modal extends React.Component {
       zIndex: 1051
     };
     const ChildComponent = this.props.modal.child[0];
+    if(!this.props.modal.show) {
+      return null;
+    }
     return (
       <div className="td-modal" style={backdropStyle} >
-        <div className="td-modal-content" style={modalStyle} >
-          <ChildComponent/>
+        <div className="td-modal-content" style={modalStyle}>
+          <ReactCSSTransitionGroup
+            transitionName="bounce"
+            transitionAppear={true}
+            transitionAppearTimeout={650}
+            transitionEnter={false}
+            transitionLeave={false}
+          >
+            <ChildComponent/>
+          </ReactCSSTransitionGroup>
         </div>
       </div>
+    )
+  }
+  render() {
+    return (
+      <ReactCSSTransitionGroup
+        transitionName="bounce"
+        transitionAppear={false}
+        transitionEnter={false}
+        transitionLeave={true}
+        transitionLeaveTimeout={645}
+      >
+        {this.getChildContent()}
+
+      </ReactCSSTransitionGroup>
+
     );
   }
 }
