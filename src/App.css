@@ -573,10 +573,12 @@
 @keyframes fadeInRight {
     from {
         opacity: 0;
+        width: 0;
         transform: translate3d(100%, 0, 0);
     }
 
     to {
+        width: 400px;
         opacity: 1;
         transform: none;
     }
@@ -584,10 +586,14 @@
 @keyframes fadeOutRight {
     from {
         opacity: 1;
+        width: 400px;
     }
 
     to {
         opacity: 0;
+        width: 0;
+        padding: 0;
+        overflow: hidden;
         transform: translate3d(100%, 0, 0);
     }
 }

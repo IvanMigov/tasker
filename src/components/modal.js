@@ -49,7 +49,7 @@ class Modal extends React.Component {
         transitionAppear={false}
         transitionEnter={false}
         transitionLeave={true}
-        transitionLeaveTimeout={645}
+        transitionLeaveTimeout={600}
       >
         {this.getChildContent()}
 
