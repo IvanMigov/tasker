@@ -6,7 +6,8 @@ import {
   SET_CURRENT_TODO,
   CHANGE_VISIBILITY,
   SET_MODAL_COMPONENT,
-  CREATE_TODO
+  CREATE_TODO,
+  REORDER_TODOS
 } from './types';
 
 const requestUrl = 'http://localhost:3004/todos';
@@ -17,6 +18,12 @@ export function fetchTodos() {
   return {
     type: FETCH_TODOS,
     payload: request
+  };
+}
+export function reorderTodos(dragIndex,hoverIndex) {
+  return {
+    type: REORDER_TODOS,
+    payload: {dragIndex, hoverIndex}
   };
 }
 export function GetToDo(id) {

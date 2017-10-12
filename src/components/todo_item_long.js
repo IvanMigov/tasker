@@ -18,8 +18,8 @@ const todoSource = {
 
 const todoTarget = {
   hover(props, monitor, component) {
-    const dragIndex = monitor.getItem().id;
-    const hoverIndex = props.id;
+    const dragIndex = monitor.getItem().index;
+    const hoverIndex = props.index;
 
     // // Don't replace items with themselves
     if (dragIndex === hoverIndex) {
@@ -55,10 +55,10 @@ const todoTarget = {
     // Time to actually perform the action
     props.moveTodo(dragIndex, hoverIndex);
 
-    // Note: we're mutating the monitor item here!
-    // Generally it's better to avoid mutations,
-    // but it's good here for the sake of performance
-    // to avoid expensive index searches.
+    // // Note: we're mutating the monitor item here!
+    // // Generally it's better to avoid mutations,
+    // // but it's good here for the sake of performance
+    // // to avoid expensive index searches.
     monitor.getItem().index = hoverIndex;
   },
   drop(props, monitor, component) {
@@ -125,13 +125,20 @@ class TodoItemLong extends Component {
   fireClick(){
     this.props.fireOnClick(this.props.todo.id);
   }
+  getClassName(){
+    let className = 'td-issue-long';
+    if(this.props.isDragging){
+      className = 'td-issue-long td-is-dragging';
+    }
+    return className;
+  }
 
 
   render() {
     const {id,date,label,title,status,priority} = this.props.todo;
     const {connectDragSource,connectDropTarget} = this.props;
     return  connectDragSource(connectDropTarget(
-      <div className="td-issue-long" onClick={this.fireClick.bind(this)}>
+      <div className={this.getClassName()} onClick={this.fireClick.bind(this)}>
         <div className="td-issue-content" >
           <div className="td-row">
             <span className="td-type" title={priority}>
@@ -156,9 +163,9 @@ class TodoItemLong extends Component {
 
         </div>
         <div className="td-grabber" style={this.getColorStatus(status)}></div>
-      </div>,
+      </div>
     ));
-  }
+}
 }
 export default DragSource(MOVE_TODO_IN_LIST, todoSource, collectSource)
 (DropTarget(MOVE_TODO_IN_LIST, todoTarget, collectTarget)(TodoItemLong));

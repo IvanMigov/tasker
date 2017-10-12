@@ -30,10 +30,12 @@ class ToDoList extends Component {
     this.props.GetToDo(id);
   }
   moveTodo(dragIndex, hoverIndex) {
-    const { todos } = this.props;
-    const dragTodo = todos[dragIndex];
+    // const { todos } = this.props;
+    // const dragTodo = todos[dragIndex];
     console.log('dragIndex',dragIndex);
     console.log('hoverIndex',hoverIndex);
+    this.props.reorderTodos(dragIndex,hoverIndex);
+
 
     // this.setState(update(this.state, {
     //   cards: {
@@ -45,8 +47,8 @@ class ToDoList extends Component {
     // }));
   }
   pinTodo(dragIndex, hoverIndex) {
-    const { todos } = this.props;
-    const dragTodo = todos[dragIndex];
+    // const { todos } = this.props;
+    // const dragTodo = todos[dragIndex];
     console.log('pinTodo dragIndex',dragIndex);
     console.log('pinTodo hoverIndex',hoverIndex);
 
@@ -61,7 +63,6 @@ class ToDoList extends Component {
   }
 
   renderTodo(todo,i) {
-    console.log(i);
     return (
       <Link
         to={{ pathname: `/todos/${todo.id }`}}

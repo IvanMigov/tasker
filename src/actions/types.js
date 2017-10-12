@@ -6,3 +6,4 @@ export const CHANGE_VISIBILITY = 'change_visibility';
 export const SET_MODAL_COMPONENT = 'set_modal_component';
 export const CREATE_TODO = 'create_todo';
 export const MOVE_TODO_IN_LIST = 'move_todo_in_list';
+export const REORDER_TODOS = 'reorder_todos';
