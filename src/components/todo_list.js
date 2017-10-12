@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import * as actions from '../actions';
 import TodoItemLong   from './todo_item_long';
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
+
 
 class ToDoList extends Component {
   componentWillMount() {
@@ -26,11 +29,54 @@ class ToDoList extends Component {
     this.setState({activeTodo: id});
     this.props.GetToDo(id);
   }
+  moveTodo(dragIndex, hoverIndex) {
+    const { todos } = this.props;
+    const dragTodo = todos[dragIndex];
+    console.log('dragIndex',dragIndex);
+    console.log('hoverIndex',hoverIndex);
 
-  renderTodo(todo) {
+    // this.setState(update(this.state, {
+    //   cards: {
+    //     $splice: [
+    //       [dragIndex, 1],
+    //       [hoverIndex, 0, dragCard],
+    //     ],
+    //   },
+    // }));
+  }
+  pinTodo(dragIndex, hoverIndex) {
+    const { todos } = this.props;
+    const dragTodo = todos[dragIndex];
+    console.log('pinTodo dragIndex',dragIndex);
+    console.log('pinTodo hoverIndex',hoverIndex);
+
+    // this.setState(update(this.state, {
+    //   cards: {
+    //     $splice: [
+    //       [dragIndex, 1],
+    //       [hoverIndex, 0, dragCard],
+    //     ],
+    //   },
+    // }));
+  }
+
+  renderTodo(todo,i) {
+    console.log(i);
     return (
-      <Link to={{ pathname: `/todos/${todo.id }`}} key={todo.id} className={this.getClassName(todo.id)}>
-        <TodoItemLong todo={todo} fireOnClick = {this.setActive.bind(this)}/>
+      <Link
+        to={{ pathname: `/todos/${todo.id }`}}
+        key={todo.id}
+        className={this.getClassName(todo.id)}
+      >
+        <TodoItemLong
+          todo={todo}
+          fireOnClick = {this.setActive.bind(this)}
+          index={i}
+          id={todo.id}
+          moveTodo={this.moveTodo.bind(this)}
+          pinTodo={this.pinTodo.bind(this)}
+
+        />
       </Link>
     );
   }
@@ -53,4 +99,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actions)(ToDoList);
+export default DragDropContext(HTML5Backend)(connect(mapStateToProps, actions)(ToDoList));

@@ -2,8 +2,92 @@ import React, { Component } from 'react';
 import logoNormal from '../images/status/normal.png';
 import logoHigh from '../images/status/major.svg';
 import logoLow from '../images/status/minor.svg';
+import { findDOMNode } from 'react-dom';
+import { DragSource, DropTarget } from 'react-dnd';
+import {MOVE_TODO_IN_LIST} from '../actions/types';
 
 
+const todoSource = {
+  beginDrag(props) {
+    return {
+      id: props.id,
+      index: props.index,
+    };
+  },
+};
+
+const todoTarget = {
+  hover(props, monitor, component) {
+    const dragIndex = monitor.getItem().id;
+    const hoverIndex = props.id;
+
+    // // Don't replace items with themselves
+    if (dragIndex === hoverIndex) {
+      return;
+    }
+
+    // Determine rectangle on screen
+    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+
+    // Get vertical middle
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+
+    // Determine mouse position
+    const clientOffset = monitor.getClientOffset();
+
+    // Get pixels to the top
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+    // Only perform the move when the mouse has crossed half of the items height
+    // When dragging downwards, only move when the cursor is below 50%
+    // When dragging upwards, only move when the cursor is above 50%
+
+    // Dragging downwards
+    if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+      return;
+    }
+
+    // Dragging upwards
+    if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+      return;
+    }
+
+    // Time to actually perform the action
+    props.moveTodo(dragIndex, hoverIndex);
+
+    // Note: we're mutating the monitor item here!
+    // Generally it's better to avoid mutations,
+    // but it's good here for the sake of performance
+    // to avoid expensive index searches.
+    monitor.getItem().index = hoverIndex;
+  },
+  drop(props, monitor, component) {
+    const dragIndex = monitor.getItem().index;
+    const hoverIndex = props.index;
+
+    props.pinTodo(dragIndex, hoverIndex);
+
+  }
+};
+
+// @DropTarget(MOVE_TODO_IN_LIST, todoTarget, connect => ({
+//   connectDropTarget: connect.dropTarget(),
+// }))
+function collectTarget(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+  }
+}
+function collectSource(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  }
+}
+// @DragSource(MOVE_TODO_IN_LIST, todoSource, (connect, monitor) => ({
+//   connectDragSource: connect.dragSource(),
+//   isDragging: monitor.isDragging(),
+// }))
 
 class TodoItemLong extends Component {
   getImgPriority(priority) {
@@ -45,7 +129,8 @@ class TodoItemLong extends Component {
 
   render() {
     const {id,date,label,title,status,priority} = this.props.todo;
-    return (
+    const {connectDragSource,connectDropTarget} = this.props;
+    return  connectDragSource(connectDropTarget(
       <div className="td-issue-long" onClick={this.fireClick.bind(this)}>
         <div className="td-issue-content" >
           <div className="td-row">
@@ -71,8 +156,9 @@ class TodoItemLong extends Component {
 
         </div>
         <div className="td-grabber" style={this.getColorStatus(status)}></div>
-      </div>
-    );
+      </div>,
+    ));
   }
 }
-export default TodoItemLong;
+export default DragSource(MOVE_TODO_IN_LIST, todoSource, collectSource)
+(DropTarget(MOVE_TODO_IN_LIST, todoTarget, collectTarget)(TodoItemLong));
