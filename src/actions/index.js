@@ -7,7 +7,8 @@ import {
   CHANGE_VISIBILITY,
   SET_MODAL_COMPONENT,
   CREATE_TODO,
-  REORDER_TODOS
+  REORDER_TODOS,
+  SAVE_TODOS
 } from './types';
 
 const requestUrl = 'http://localhost:3004/todos';
@@ -24,6 +25,19 @@ export function reorderTodos(dragIndex,hoverIndex) {
   return {
     type: REORDER_TODOS,
     payload: {dragIndex, hoverIndex}
+  };
+}
+export function saveTodos(todos,callback) {
+  let todosOrder = [];
+  todos.forEach(todo =>{
+    todosOrder.push(todo.id);
+  });
+  const request = axios.patch(`${requestUrl}/0`,{order:todosOrder});
+
+  return {
+    type: SAVE_TODOS,
+    payload: request,
+    callback
   };
 }
 export function GetToDo(id) {

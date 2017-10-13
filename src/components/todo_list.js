@@ -39,38 +39,18 @@ class ToDoList extends Component {
     console.log(this.state.isDragging);
   }
   moveTodo(dragIndex, hoverIndex) {
-    // const { todos } = this.props;
-    // const dragTodo = todos[dragIndex];
     console.log('dragIndex',dragIndex);
     console.log('hoverIndex',hoverIndex);
     this.props.reorderTodos(dragIndex,hoverIndex);
-
-
-    // this.setState(update(this.state, {
-    //   cards: {
-    //     $splice: [
-    //       [dragIndex, 1],
-    //       [hoverIndex, 0, dragCard],
-    //     ],
-    //   },
-    // }));
   }
-  pinTodo(dragIndex, hoverIndex) {
-    // const { todos } = this.props;
-    // const dragTodo = todos[dragIndex];
-    console.log('pinTodo dragIndex',dragIndex);
-    console.log('pinTodo hoverIndex',hoverIndex);
+  pinTodo(dragID, hoverID) {
+    console.log('pinTodo dragIndex',dragID);
+    console.log('pinTodo hoverIndex',hoverID);
+    this.props.saveTodos(this.props.todos,()=>{
+      this.props.fetchTodos()
+    });
 
-    // this.setState(update(this.state, {
-    //   cards: {
-    //     $splice: [
-    //       [dragIndex, 1],
-    //       [hoverIndex, 0, dragCard],
-    //     ],
-    //   },
-    // }));
   }
-
   renderTodo(todo,i) {
     return (
       <Link
