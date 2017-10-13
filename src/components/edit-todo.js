@@ -17,7 +17,6 @@ class EditToDoForm extends Component {
   componentDidMount() {
     this.props.GetToDo(this.props.match.params.ToDoId);
   }
-
   onSubmit(values){
     this.props.saveToDo(values,()=>{
       this.props.fetchTodos()

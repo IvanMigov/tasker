@@ -68,7 +68,6 @@ export function saveNewToDo(todo, callback) {
 }
 
 export function setToDo(todo) {
-
   return {
     type: SET_CURRENT_TODO,
     payload: todo

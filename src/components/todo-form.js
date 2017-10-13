@@ -21,7 +21,7 @@ let ToDoForm = props => {
         <div className="td-row-id">
           <span className="td-data-id">{initialValues.id}</span>
           <span className="td-data-date">{initialValues.date}</span>
-          <span className="td-detail-close-icon" onClick={onClose}></span>
+          <span className="td-detail-close-icon" onClick={onClose}> </span>
 
         </div>
         <div className="td-data-title">
