@@ -29,6 +29,7 @@ ReactDOM.render(
           <Header/>
           <Modal/>
           <Switch>
+            <Redirect from='/todos/0' to='/todos'/>
             <Route path="/todos/:ToDoId" component={Content(EditToDoForm)}/>
             <Route path="/todos" component={Content()}/>
             <Redirect from='/' to='/todos'/>
