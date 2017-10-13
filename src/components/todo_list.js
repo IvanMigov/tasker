@@ -15,7 +15,8 @@ class ToDoList extends Component {
     super(props);
 
     this.state = {
-      activeTodo: props.match.params.ToDoId
+      activeTodo: props.match.params.ToDoId,
+      isDragging: false
     };
   }
   getClassName(id){
@@ -25,9 +26,17 @@ class ToDoList extends Component {
     }
     return className;
   }
+  getWrapClassName(){
+    let className = this.state.isDragging ? 'todo-list td-drag-in-process' : 'todo-list';
+    return className;
+  }
   setActive(id){
     this.setState({activeTodo: id});
     this.props.GetToDo(id);
+  }
+  triggerIsDragging(){
+    this.setState({isDragging: !this.state.isDragging});
+    console.log(this.state.isDragging);
   }
   moveTodo(dragIndex, hoverIndex) {
     // const { todos } = this.props;
@@ -76,6 +85,7 @@ class ToDoList extends Component {
           id={todo.id}
           moveTodo={this.moveTodo.bind(this)}
           pinTodo={this.pinTodo.bind(this)}
+          triggerDragging={this.triggerIsDragging.bind(this)}
 
         />
       </Link>
@@ -84,7 +94,7 @@ class ToDoList extends Component {
 
   render() {
     return (
-      <div className="todo-list">
+      <div className={this.getWrapClassName()}>
         {
           this.props.todos.map(this.renderTodo.bind(this))
         }

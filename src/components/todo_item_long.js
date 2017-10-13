@@ -9,10 +9,14 @@ import {MOVE_TODO_IN_LIST} from '../actions/types';
 
 const todoSource = {
   beginDrag(props) {
+    props.triggerDragging();
     return {
       id: props.id,
       index: props.index,
     };
+  },
+  endDrag(props) {
+    props.triggerDragging()
   },
 };
 
@@ -66,7 +70,6 @@ const todoTarget = {
     const hoverIndex = props.index;
 
     props.pinTodo(dragIndex, hoverIndex);
-
   }
 };
 
