@@ -8,3 +8,4 @@ export const CREATE_TODO = 'create_todo';
 export const MOVE_TODO_IN_LIST = 'move_todo_in_list';
 export const REORDER_TODOS = 'reorder_todos';
 export const SAVE_TODOS = 'save_todos';
+export const CHANGE_FILTERS_SET = 'change_filters_set';

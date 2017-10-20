@@ -2,16 +2,59 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class ToDoFilters extends Component {
+const filterButtons = [
+  {
+    value: 'ToDo',
+    label: 'To Do'
+  }
+  ,  {
+    value: 'InProgress',
+    label: 'In Progress'
+  },
+  {
+    value: 'Closed',
+    label: 'Closed'
+  }
 
+];
+
+class ToDoFilters extends Component {
+  componentWillMount() {
+    this.props.fetchFiltersSet();
+  }
+  getClassName(filter){
+    let className = 'td-btn-filter';
+    if(this.props.filters[filter]){
+      className = 'td-btn-filter active';
+    }
+    return className;
+  }
+  triggerFilter(){
+    let newFilter = {};
+    const self = this[0],
+      item = this[1],
+      key = item.value;
+    newFilter[key] = !self.props.filters[key];
+    self.props.changeFiltersSet({...self.props.filters,...newFilter});
+  }
+  getFilterItem(item) {
+    return (
+      <button
+        key={item.value}
+        type="button"
+        className={this.getClassName(item.value)}
+        onClick={this.triggerFilter.bind([this,item])}
+      >{item.label}</button>
+    );
+  }
   render() {
     return (
     <div className="td-filters">
       <div className="btn-group">
         <span>Quick Filters:</span>
-        <button type="button" className="td-btn-filter active">To Do</button>
-        <button type="button" className="td-btn-filter">In Progress</button>
-        <button type="button" className="td-btn-filter">Closed</button>
+        {
+          filterButtons.map(this.getFilterItem.bind(this))
+        }
       </div>
     </div>
     );
@@ -19,7 +62,7 @@ class ToDoFilters extends Component {
 }
 
 function mapStateToProps(state) {
-  return { todo: state.todo };
+  return { filters: state.filters };
 }
 
 export default connect(mapStateToProps, actions)(ToDoFilters);

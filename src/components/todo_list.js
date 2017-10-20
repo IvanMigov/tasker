@@ -36,40 +36,39 @@ class ToDoList extends Component {
   }
   triggerIsDragging(){
     this.setState({isDragging: !this.state.isDragging});
-    console.log(this.state.isDragging);
   }
   moveTodo(dragIndex, hoverIndex) {
-    console.log('dragIndex',dragIndex);
-    console.log('hoverIndex',hoverIndex);
     this.props.reorderTodos(dragIndex,hoverIndex);
   }
   pinTodo(dragID, hoverID) {
-    console.log('pinTodo dragIndex',dragID);
-    console.log('pinTodo hoverIndex',hoverID);
     this.props.saveTodos(this.props.todos,()=>{
       this.props.fetchTodos()
     });
 
   }
   renderTodo(todo,i) {
-    return (
-      <Link
-        to={{ pathname: `/todos/${todo.id }`}}
-        key={todo.id}
-        className={this.getClassName(todo.id)}
-      >
-        <TodoItemLong
-          todo={todo}
-          fireOnClick = {this.setActive.bind(this)}
-          index={i}
-          id={todo.id}
-          moveTodo={this.moveTodo.bind(this)}
-          pinTodo={this.pinTodo.bind(this)}
-          triggerDragging={this.triggerIsDragging.bind(this)}
+    if(this.props.filters[todo.status]){
+      return (
+        <Link
+          to={{ pathname: `/todos/${todo.id }`}}
+          key={todo.id}
+          className={this.getClassName(todo.id)}
+        >
+          <TodoItemLong
+            todo={todo}
+            fireOnClick = {this.setActive.bind(this)}
+            index={i}
+            id={todo.id}
+            moveTodo={this.moveTodo.bind(this)}
+            pinTodo={this.pinTodo.bind(this)}
+            triggerDragging={this.triggerIsDragging.bind(this)}
 
-        />
-      </Link>
-    );
+          />
+        </Link>
+      );
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -85,7 +84,8 @@ class ToDoList extends Component {
 
 function mapStateToProps(state) {
   return {
-    todos: state.todos
+    todos: state.todos,
+    filters: state.filters
 
   };
 }

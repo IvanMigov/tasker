@@ -8,7 +8,8 @@ import {
   SET_MODAL_COMPONENT,
   CREATE_TODO,
   REORDER_TODOS,
-  SAVE_TODOS
+  SAVE_TODOS,
+  CHANGE_FILTERS_SET
 } from './types';
 
 const requestUrl = 'http://localhost:3004/todos';
@@ -66,14 +67,12 @@ export function saveNewToDo(todo, callback) {
     callback
   };
 }
-
 export function setToDo(todo) {
   return {
     type: SET_CURRENT_TODO,
     payload: todo
   };
 }
-
 export function showHideModal(visibility) {
 
   return {
@@ -86,5 +85,21 @@ export function setModalComponents(component) {
   return {
     type: SET_MODAL_COMPONENT,
     payload: component
+  };
+}
+export function fetchFiltersSet() {
+  const filters = JSON.parse(localStorage.getItem(CHANGE_FILTERS_SET)) || {};
+
+  return {
+    type: CHANGE_FILTERS_SET,
+    payload: filters
+  };
+}
+export function changeFiltersSet(filters) {
+  localStorage.setItem(CHANGE_FILTERS_SET,JSON.stringify(filters));
+
+  return {
+    type: CHANGE_FILTERS_SET,
+    payload: filters
   };
 }
