@@ -3,8 +3,6 @@ import { Component } from 'react';
 import LeftSideBar   from './left-side-bar';
 import ToDoList   from './todo_list';
 import Filters   from './todo-filters';
-import HTML5Backend from 'react-dnd-html5-backend';
-import { DragDropContext } from 'react-dnd';
 
 
 

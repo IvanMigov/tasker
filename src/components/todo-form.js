@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Field} from 'redux-form'
-import {Link} from 'react-router-dom'
 
 import Loader from './loader'
 const statusList = ['ToDo', 'InProgress', 'Closed'];

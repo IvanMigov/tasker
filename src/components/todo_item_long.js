@@ -137,5 +137,4 @@ class TodoItemLong extends Component {
     ));
 }
 }
-export default DragSource(MOVE_TODO_IN_LIST, todoSource, collectSource)
-(DropTarget(MOVE_TODO_IN_LIST, todoTarget, collectTarget)(TodoItemLong));
+export default DragSource(MOVE_TODO_IN_LIST, todoSource, collectSource)(DropTarget(MOVE_TODO_IN_LIST, todoTarget, collectTarget)(TodoItemLong));
