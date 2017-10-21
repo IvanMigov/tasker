@@ -5,6 +5,8 @@ import logoLow from '../images/status/minor.svg';
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 import {MOVE_TODO_IN_LIST} from '../actions/types';
+import ReactTooltip from 'react-tooltip'
+
 
 
 const todoSource = {
@@ -61,6 +63,12 @@ function collectSource(connect, monitor) {
   }
 }
 class TodoItemLong extends Component {
+  constructor(){
+    super();
+    this.state = {
+      buttonPressed: false
+    }
+  }
   getImgPriority(priority) {
     let logoImg = logoNormal;
     switch (priority) {
@@ -103,10 +111,46 @@ class TodoItemLong extends Component {
     }
     return className;
   }
+  startProgress(e){
+    this.setState({buttonPressed: true});
+    setTimeout(()=>{
+      this.props.startProgress({...this.props.todo,...{status:'InProgress'}})
+    },1000);
+    e.stopPropagation();
+  }
 
+
+
+
+
+getChangeStatus(){
+    // return null;
+
+    if (this.props.todo.status === 'ToDo') {
+
+      return (
+          <button
+            onClick={this.startProgress.bind(this)}
+            className={this.state.buttonPressed ? "td-btn-progress btn-md hvr-ripple-out" : "td-btn-progress btn-md" }
+            data-tip={this.state.buttonPressed ? null : "Start Progress"}
+          >
+            {/*{*/}
+              {/*this.state.buttonPressed ? null : <ReactTooltip*/}
+                  {/*effect="solid"*/}
+                  {/*delayShow={700}*/}
+                  {/*event="mouseover"*/}
+                  {/*eventOff="click mouseleave"*/}
+                {/*/>*/}
+            {/*}*/}
+          </button>
+
+      );
+    }
+    return null;
+  }
   render() {
     const {id,date,label,title,status,priority} = this.props.todo;
-    const {connectDragSource,connectDropTarget} = this.props;
+    const {connectDragSource,connectDropTarget,isDragging} = this.props;
     return  connectDragSource(connectDropTarget(
       <div className={this.getClassName()} onClick={this.fireClick.bind(this)}>
         <div className="td-issue-content" >
@@ -120,7 +164,7 @@ class TodoItemLong extends Component {
             <div className="td-summary" title={title}>
               <span className="td-inner">{title}</span>
             </div>
-
+            {this.getChangeStatus()}
           </div>
           <div className="td-row td-row-bottom">
             <div className="td-label" title={label}>

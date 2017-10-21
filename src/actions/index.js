@@ -3,6 +3,7 @@ import {
   FETCH_TODOS,
   FETCH_TODO_BY_ID,
   PATCH_TODO,
+  PATCH_TODO_SILENTLY,
   SET_CURRENT_TODO,
   CHANGE_VISIBILITY,
   SET_MODAL_COMPONENT,
@@ -54,6 +55,15 @@ export function saveToDo(todo, callback) {
 
   return {
     type: PATCH_TODO,
+    payload: request,
+    callback
+  };
+}
+export function saveToDoWithoutChangimgState(todo, callback) {
+  const request = axios.patch(`${requestUrl}/${todo.id}`,todo);
+
+  return {
+    type: PATCH_TODO_SILENTLY,
     payload: request,
     callback
   };

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
 import * as actions from '../actions';
 import TodoItemLong   from './todo_item_long';
 import HTML5Backend from 'react-dnd-html5-backend';
@@ -33,6 +32,18 @@ class ToDoList extends Component {
   setActive(id){
     this.setState({activeTodo: id});
     this.props.GetToDo(id);
+    this.props.history.push(`/todos/${id}`);
+  }
+  startProgress(todo){
+    if(this.state.activeTodo == todo.id){
+      this.props.saveToDo(todo,()=>{
+        this.props.fetchTodos()
+      });
+    }else{
+      this.props.saveToDoWithoutChangimgState(todo,()=>{
+        this.props.fetchTodos()
+      });
+    }
   }
   triggerIsDragging(){
     this.setState({isDragging: !this.state.isDragging});
@@ -49,14 +60,12 @@ class ToDoList extends Component {
   renderTodo(todo,i) {
     if(this.props.filters[todo.status]){
       return (
-        <Link
-          to={{ pathname: `/todos/${todo.id }`}}
-          key={todo.id}
-          className={this.getClassName(todo.id)}
-        >
           <TodoItemLong
+            key={todo.id}
+            className={this.getClassName(todo.id)}
             todo={todo}
             fireOnClick = {this.setActive.bind(this)}
+            startProgress = {this.startProgress.bind(this)}
             index={i}
             id={todo.id}
             moveTodo={this.moveTodo.bind(this)}
@@ -64,7 +73,6 @@ class ToDoList extends Component {
             triggerDragging={this.triggerIsDragging.bind(this)}
 
           />
-        </Link>
       );
     } else {
       return null;
