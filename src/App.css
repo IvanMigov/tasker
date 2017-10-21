@@ -85,6 +85,8 @@
 /*=====================================tooltip======================================*/
 .tooltip-inner {  color: #fff!important;  background-color: #a6acba!important;  border-radius: 4px!important;  padding: 10px;  }
 .tooltip.top .tooltip-arrow{  border-top-color:  #a6acba!important;  }
+.tooltip.left .tooltip-arrow{  border-left-color:  #a6acba!important;  }
+
 
 /*===================================================================================== */
 

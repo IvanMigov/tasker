@@ -129,7 +129,7 @@ class TodoItemLong extends Component {
     if (this.props.todo.status === 'ToDo') {
 
       return (
-        <Tooltip title='Start Progress' position='top'>
+        <Tooltip title='Start Progress' position='left'>
           <button
             onClick={this.startProgress.bind(this)}
             className={this.state.buttonPressed ? "td-btn-progress btn-md hvr-ripple-out" : "td-btn-progress btn-md" }
