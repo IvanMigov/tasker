@@ -35,7 +35,7 @@ class ToDoList extends Component {
     this.props.history.push(`/todos/${id}`);
   }
   startProgress(todo){
-    if(this.state.activeTodo == todo.id){
+    if (parseInt(this.state.activeTodo, 10) === parseInt(todo.id, 10)) {
       this.props.saveToDo(todo,()=>{
         this.props.fetchTodos()
       });

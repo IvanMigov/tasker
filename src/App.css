@@ -17,28 +17,8 @@
 .td-issue-long .td-type,
 .td-issue-long .td-type img{  height: 16px;  width: 16px;  }
 
-.td-issue-long .td-summary {
-    overflow: hidden;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 5px;
-    width: calc(100% - 200px);
-    text-overflow: ellipsis;
-}
-.td-btn-progress{
-    height: 24px;
-    width: 23px;
-    background: url("./images/icons/action_submit.svg") no-repeat;
-    padding: 0;
-    background-size: 30px 71px;
-    background-position: -4px -25px;
-    border: none;
-    outline: none!important;
-    position: absolute;
-    right: 2px;
-    top: 4px;
-
-}
+.td-issue-long .td-summary {  overflow: hidden;  display: inline-block;  vertical-align: middle;  margin-left: 5px;  width: calc(100% - 200px);  text-overflow: ellipsis;  }
+.td-btn-progress{  height: 24px;  width: 23px;  background: url("./images/icons/action_submit.svg") no-repeat;  padding: 0;  background-size: 30px 71px;  background-position: -4px -25px;  border: none;  outline: none!important;  position: absolute;  right: 2px;  top: 4px;  }
 .td-btn-progress:active{
 
 }
@@ -103,14 +83,8 @@
 /*===================================================================================== */
 
 /*=====================================tooltip======================================*/
-.td-btn-progress .__react_component_tooltip.type-dark {
-    color: #fff;
-    background-color: #a6acba;
-    border-radius: 4px;
-}
-.td-btn-progress .__react_component_tooltip.type-dark.place-top:after {
-    border-top-color: #a6acba;
-}
+.tooltip-inner {  color: #fff!important;  background-color: #a6acba!important;  border-radius: 4px!important;  padding: 10px;  }
+.tooltip.top .tooltip-arrow{  border-top-color:  #a6acba!important;  }
 
 /*===================================================================================== */
 
@@ -528,7 +502,7 @@
 
     to {
         visibility: hidden;
-        transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -120%, 0);
     }
 }
 

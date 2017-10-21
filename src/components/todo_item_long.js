@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logoNormal from '../images/status/normal.png';
 import logoHigh from '../images/status/major.svg';
 import logoLow from '../images/status/minor.svg';
-import { findDOMNode } from 'react-dom';
-import { DragSource, DropTarget } from 'react-dnd';
+import {findDOMNode} from 'react-dom';
+import {DragSource, DropTarget} from 'react-dnd';
 import {MOVE_TODO_IN_LIST} from '../actions/types';
-import ReactTooltip from 'react-tooltip'
-
+import Tooltip from 'react-tooltip-component'
 
 
 const todoSource = {
@@ -63,12 +62,13 @@ function collectSource(connect, monitor) {
   }
 }
 class TodoItemLong extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
       buttonPressed: false
     }
   }
+
   getImgPriority(priority) {
     let logoImg = logoNormal;
     switch (priority) {
@@ -86,6 +86,7 @@ class TodoItemLong extends Component {
       <img src={logoImg} alt="priority"/>
     );
   }
+
   getColorStatus(status) {
     let backgroundColor = '#bfe4ff';//status == todo
     switch (status) {
@@ -101,65 +102,59 @@ class TodoItemLong extends Component {
 
     return {backgroundColor}
   }
-  fireClick(){
+
+  fireClick() {
     this.props.fireOnClick(this.props.todo.id);
   }
-  getClassName(){
+
+  getClassName() {
     let className = 'td-issue-long';
-    if(this.props.isDragging){
+    if (this.props.isDragging) {
       className = 'td-issue-long td-is-dragging';
     }
     return className;
   }
-  startProgress(e){
+
+  startProgress(e) {
     this.setState({buttonPressed: true});
-    setTimeout(()=>{
-      this.props.startProgress({...this.props.todo,...{status:'InProgress'}})
-    },1000);
+    setTimeout(() => {
+      this.props.startProgress({...this.props.todo, ...{status: 'InProgress'}})
+    }, 1000);
     e.stopPropagation();
   }
 
-
-
-
-
-getChangeStatus(){
+  getChangeStatus() {
     // return null;
 
     if (this.props.todo.status === 'ToDo') {
 
       return (
+        <Tooltip title='Start Progress' position='top'>
           <button
             onClick={this.startProgress.bind(this)}
             className={this.state.buttonPressed ? "td-btn-progress btn-md hvr-ripple-out" : "td-btn-progress btn-md" }
-            data-tip={this.state.buttonPressed ? null : "Start Progress"}
+            data-tip="Start Progress"
           >
-            {/*{*/}
-              {/*this.state.buttonPressed ? null : <ReactTooltip*/}
-                  {/*effect="solid"*/}
-                  {/*delayShow={700}*/}
-                  {/*event="mouseover"*/}
-                  {/*eventOff="click mouseleave"*/}
-                {/*/>*/}
-            {/*}*/}
           </button>
+        </Tooltip>
 
       );
     }
     return null;
   }
+
   render() {
-    const {id,date,label,title,status,priority} = this.props.todo;
-    const {connectDragSource,connectDropTarget,isDragging} = this.props;
-    return  connectDragSource(connectDropTarget(
+    const {id, date, label, title, status, priority} = this.props.todo;
+    const {connectDragSource, connectDropTarget} = this.props;
+    return connectDragSource(connectDropTarget(
       <div className={this.getClassName()} onClick={this.fireClick.bind(this)}>
-        <div className="td-issue-content" >
+        <div className="td-issue-content">
           <div className="td-row">
             <span className="td-type" title={priority}>
               {this.getImgPriority(priority)}
             </span>
             <div className="td-key">
-              <span  title={id} className="td-key-link">{id}</span>
+              <span title={id} className="td-key-link">{id}</span>
             </div>
             <div className="td-summary" title={title}>
               <span className="td-inner">{title}</span>
@@ -179,6 +174,6 @@ getChangeStatus(){
         <div className="td-grabber" style={this.getColorStatus(status)}></div>
       </div>
     ));
-}
+  }
 }
 export default DragSource(MOVE_TODO_IN_LIST, todoSource, collectSource)(DropTarget(MOVE_TODO_IN_LIST, todoTarget, collectTarget)(TodoItemLong));
