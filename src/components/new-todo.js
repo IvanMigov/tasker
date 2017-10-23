@@ -24,7 +24,6 @@ class NewToDoForm extends Component {
       this.props.fetchTodos();
       this.props.showHideModal(false);
     });
-    console.log('new values',{...initialValues,...values});
   }
   onClose() {
     this.props.showHideModal(false);
