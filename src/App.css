@@ -31,6 +31,7 @@
 /*===================================Header============================================ */
 .td-content,.td-content-list{  display: flex;  }
 .td-header{  background: #555;  padding: 5px 10px;  display: flex;  }
+.td-header .btn-primary{width: 68px}
 .td-header .td-header-logo{  width: 50px;  }
 .td-header .td-header-content{  display: flex;  justify-content: space-between;  width: 100%;  }
 
