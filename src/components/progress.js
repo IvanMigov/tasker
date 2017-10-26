@@ -20,13 +20,23 @@ const progressStatus = [
   },
 
 ];
+const filterStatus = 'InProgress';
 
 class Progress extends Component {
+  componentWillMount() {
+    this.props.fetchTodos();
+  }
+  getColumnTodos(column){
+    return this.props.todos.filter((todo)=>{
+      return  todo.status ===  filterStatus && todo.toDoStatus ===  column
+    });
+  }
   getColumnView(column){
     return (
       <StatusColumn
         key={column.value}
         column = {column}
+        todos = {this.getColumnTodos(column.value)}
       />
     );
   }
@@ -40,9 +50,14 @@ class Progress extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    todos: state.todos
+  };
+}
 
 Progress = connect(
-  null,
+  mapStateToProps,
   actions
 )(Progress);
 

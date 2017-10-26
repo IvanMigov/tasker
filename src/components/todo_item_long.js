@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import logoNormal from '../images/status/normal.png';
-import logoHigh from '../images/status/major.svg';
-import logoLow from '../images/status/minor.svg';
 import {findDOMNode} from 'react-dom';
 import {DragSource, DropTarget} from 'react-dnd';
 import {MOVE_TODO_IN_LIST} from '../actions/types';
-import Tooltip from 'react-tooltip-component'
+import Tooltip from 'react-tooltip-component';
+import {getImgPriority,getColorStatus} from '../utils/todo_item_utils'
 
 
 const todoSource = {
@@ -69,48 +67,14 @@ class TodoItemLong extends Component {
     }
   }
 
-  getImgPriority(priority) {
-    let logoImg = logoNormal;
-    switch (priority) {
-      case  'low':
-        logoImg = logoLow;
-        break;
-      case  'high':
-        logoImg = logoHigh;
-        break;
-      default:
-        logoImg = logoNormal;
-    }
-
-    return (
-      <img src={logoImg} alt="priority"/>
-    );
-  }
-
-  getColorStatus(status) {
-    let backgroundColor = '#bfe4ff';//status == todo
-    switch (status) {
-      case  'InProgress':
-        backgroundColor = '#0c0e75';
-        break;
-      case  'Closed':
-        backgroundColor = '#1d750c';
-        break;
-      default:
-        backgroundColor = '#bfe4ff';
-    }
-
-    return {backgroundColor}
-  }
-
   fireClick() {
     this.props.fireOnClick(this.props.todo.id);
   }
 
   getClassName() {
-    let className = 'td-issue-long';
+    let className = 'td-issue';
     if (this.props.isDragging) {
-      className = 'td-issue-long td-is-dragging';
+      className = 'td-issue td-is-dragging';
     }
     return className;
   }
@@ -151,7 +115,7 @@ class TodoItemLong extends Component {
         <div className="td-issue-content">
           <div className="td-row">
             <span className="td-type" title={priority}>
-              {this.getImgPriority(priority)}
+              {getImgPriority(priority)}
             </span>
             <div className="td-key">
               <span title={id} className="td-key-link">{id}</span>
@@ -171,7 +135,7 @@ class TodoItemLong extends Component {
           </div>
 
         </div>
-        <div className="td-grabber" style={this.getColorStatus(status)}></div>
+        <div className="td-grabber" style={getColorStatus(status)}></div>
       </div>
     ));
   }

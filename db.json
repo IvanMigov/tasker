@@ -17,11 +17,11 @@
       "id": 250,
       "date": "07/19/2017",
       "label": "home",
-      "status": "ToDo",
+      "status": "InProgress",
       "priority": "high",
-      "toDoStatus": "ToDo",
+      "toDoStatus": "InProgress",
       "title": "250 Home cleaning ",
-      "description": "Wash dishes and flore"
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in cul"
     },
     {
       "id": 251,
@@ -29,7 +29,7 @@
       "label": "work",
       "status": "InProgress",
       "priority": "normal",
-      "toDoStatus": "ToDo",
+      "toDoStatus": "Done",
       "title": "251 Resolve issue ",
       "description": "Resolve issue in css88"
     },
@@ -87,7 +87,7 @@
       "date": "10/12/2017",
       "title": "By cat food",
       "label": "",
-      "status": "ToDo",
+      "status": "InProgress",
       "priority": "normal",
       "toDoStatus": "ToDo",
       "description": "1- go to the shop\n2-by cat food",
