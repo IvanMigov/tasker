@@ -2,8 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Component } from 'react';
 import * as actions from '../actions';
-import StatusColumn   from './status_column';
-
 
 const progressStatus = [
   {
@@ -22,20 +20,11 @@ const progressStatus = [
 ];
 
 class Progress extends Component {
-  getColumnView(column){
-    return (
-      <StatusColumn
-        key={column.value}
-        column = {column}
-      />
-    );
-  }
   render() {
     return (
       <div className="td-progress" >
-        {
-          progressStatus.map(this.getColumnView.bind(this))
-        }
+        <h1>progress</h1>
+
       </div>
     );
   }

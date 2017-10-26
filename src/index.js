@@ -37,8 +37,10 @@ ReactDOM.render(
         </Switch>
         <div className="td-progress-container">
           <Route path="/progress" component={LeftSideBar}/>
-          <Route path="/progress" component={Progress}/>
-          <Route path="/progress/:ToDoId" component={EditToDoForm}/>
+          <div className="td-progress-content">
+            <Route path="/progress" component={Progress}/>
+            <Route path="/progress/:ToDoId" component={EditToDoForm}/>
+          </div>
         </div>
       </div>
     </BrowserRouter>

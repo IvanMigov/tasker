@@ -52,9 +52,47 @@
 
 /*===================================================================================== */
 
-/*===================================profress container============================================ */
-.td-progress-container{  display: flex  }
+/*===================================progress container============================================ */
+.td-progress-container,
+.td-progress-content,
+.td-progress{
+    display: flex
+}
 
+.td-progress-content{
+    width: calc(100% - 50px)
+}
+.td-progress {
+    width: 100%
+}
+
+.td-progress {
+    padding: 2px 10px 10px 10px;
+}
+.td-progress{
+    justify-content: space-between;
+}
+.td-progress .td-column{
+    min-width: 170px;
+    box-sizing: border-box;
+    margin-right: 5px;
+    padding: 1px 0 0;
+    position: relative;
+    vertical-align: top;
+    width: 33%;
+}
+.td-progress .td-column-list {
+    width: 100%;
+    background: #f5f5f5;
+    min-height: 200px;
+}
+.td-progress .td-column-label {
+    background: #fff;
+    border-bottom: 5px solid #f5f5f5;
+    padding: 5px 10px 5px 0;
+    color: #333;
+    font-size: 14px;
+}
 /*===================================================================================== */
 
 /*===================================filters============================================ */
