@@ -39,7 +39,7 @@ ReactDOM.render(
           <Route path="/progress" component={LeftSideBar}/>
           <div className="td-progress-content">
             <Route path="/progress" component={Progress}/>
-            <Route path="/progress/:ToDoId" component={EditToDoForm} someProps="something 21"/>
+            <Route path="/progress/:ToDoId"  render={(props)=><EditToDoForm {...props} routeOnClose="/progress"/>} />
           </div>
         </div>
       </div>

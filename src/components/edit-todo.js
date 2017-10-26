@@ -24,10 +24,10 @@ class EditToDoForm extends Component {
     this.props.setToDo(null);
   }
   onClose() {
-    console.log('this.props.history',this.props);
+    const routeTo = this.props.routeOnClose || '/todos';
     this.setState({show: false});
     setTimeout(()=>{
-      this.props.history.push('/todos');
+      this.props.history.push(routeTo);
     },640);
   }
   getContent(){
