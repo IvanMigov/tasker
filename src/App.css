@@ -38,7 +38,14 @@
     overflow: hidden;
     word-wrap: break-word;
 }
-
+.td-column-list .td-issue{
+    min-width: 170px;
+}
+.td-column-list .td-issue .td-summary{
+}
+.td-column-list .td-issue .td-row{
+    overflow: hidden;
+ }
 /*===================================================================================== */
 
 /*===================================Header============================================ */

@@ -24,6 +24,7 @@ class EditToDoForm extends Component {
     this.props.setToDo(null);
   }
   onClose() {
+    console.log('this.props.history',this.props);
     this.setState({show: false});
     setTimeout(()=>{
       this.props.history.push('/todos');

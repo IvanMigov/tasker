@@ -2,16 +2,23 @@ import React from 'react';
 import {connect} from 'react-redux';
 import { Component } from 'react';
 import * as actions from '../actions';
-import {getImgPriority,getColorStatus} from '../utils/todo_item_utils'
+import {getImgPriority} from '../utils/todo_item_utils';
+import {withRouter} from "react-router-dom";
 
 
 
 
 class TodoItemColumn extends Component {
+  showEditTodo() {
+    const id = this.props.todo.id;
+    this.setState({activeTodo: id});
+    this.props.GetToDo(id);
+    this.props.history.push(`/progress/${id}`);
+  }
   render() {
     const {id, date, label, title, description, priority} = this.props.todo;
     return (
-      <div className='td-issue'>
+      <div className='td-issue' onClick={this.showEditTodo.bind(this)}>
         <div className="td-issue-content">
           <div className="td-row">
             <span className="td-type" title={priority}>
@@ -20,9 +27,7 @@ class TodoItemColumn extends Component {
             <div className="td-key">
               <span title={id} className="td-key-link">{id}</span>
             </div>
-            <div className="td-summary" title={title}>
-              <span className="td-inner">{title}</span>
-            </div>
+            <span className="td-inner">{title}</span>
           </div>
           <div className="td-row-description">
             <span className="td-description">{description}</span>
@@ -47,4 +52,4 @@ TodoItemColumn = connect(
   actions
 )(TodoItemColumn);
 
-export default TodoItemColumn
+export default withRouter(TodoItemColumn)
