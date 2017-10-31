@@ -25,6 +25,13 @@ const filterStatus = 'InProgress';
 
 
 class Progress extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      droppableId: null
+    };
+  }
   componentWillMount() {
     this.props.fetchTodos();
   }
@@ -36,18 +43,28 @@ class Progress extends Component {
   getColumnView(column){
     return (
       <StatusColumn
-        column={column}
-        todos={this.getColumnTodos(column.value)}
-        key={column.value}
+        column = {column}
+        todos = {this.getColumnTodos(column.value)}
+        key = {column.value}
+        droppableId = {this.state.droppableId}
       />
     );
   }
+  onDragStart(result){
+    this.setState({droppableId: result.source.droppableId});
+    console.log('onDragStart',result);
+  }
   onDragEnd(result){
+    this.setState({droppableId: null});
     console.log('onDragEnd',result);
   }
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd.bind(this)}>
+      <DragDropContext
+        onDragEnd={this.onDragEnd.bind(this)}
+        onDragStart={this.onDragStart.bind(this)}
+
+      >
         <div className="td-progress" >
           {
             progressStatus.map(this.getColumnView.bind(this))
