@@ -1,7 +1,8 @@
 import {
   FETCH_TODOS,
   REORDER_TODOS,
-  SAVE_TODOS
+  SAVE_TODOS,
+  SAVE_TODO_IN_LIST
 
 } from '../actions/types';
 
@@ -33,8 +34,22 @@ export default function (state = [], action) {
       todos.splice(dragIndex, 1);
       todos.splice(hoverIndex, 0, element);
       return todos;
-    case SAVE_TODOS:
-      return [...action.payload.data];
+    // case SAVE_TODOS:
+    //   return [...action.payload.data];
+    case SAVE_TODO_IN_LIST:
+      const todosList = [...state];
+      let TodoIndex = 0;
+      todosList.find((todo,index)=>{
+        if(todo.id === action.payload.id){
+          TodoIndex = index;
+          return true;
+        }else{
+          return false
+        }
+      });
+      todosList[TodoIndex] = action.payload;
+      return todosList;
+
     default:
       return state;
   }

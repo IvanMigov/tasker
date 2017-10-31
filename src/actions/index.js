@@ -10,7 +10,8 @@ import {
   CREATE_TODO,
   REORDER_TODOS,
   SAVE_TODOS,
-  CHANGE_FILTERS_SET
+  CHANGE_FILTERS_SET,
+  SAVE_TODO_IN_LIST
 } from './types';
 
 const requestUrl = 'http://localhost:3004/todos';
@@ -27,6 +28,12 @@ export function reorderTodos(dragIndex,hoverIndex) {
   return {
     type: REORDER_TODOS,
     payload: {dragIndex, hoverIndex}
+  };
+}
+export function saveToDoInList(todo) {
+  return {
+    type: SAVE_TODO_IN_LIST,
+    payload: todo
   };
 }
 export function saveTodos(todos,callback) {
@@ -59,7 +66,7 @@ export function saveToDo(todo, callback) {
     callback
   };
 }
-export function saveToDoWithoutChangimgState(todo, callback) {
+export function saveToDoWithoutChangingState(todo, callback) {
   const request = axios.patch(`${requestUrl}/${todo.id}`,todo);
 
   return {

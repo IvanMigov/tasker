@@ -40,7 +40,7 @@ class ToDoList extends Component {
         this.props.fetchTodos()
       });
     }else{
-      this.props.saveToDoWithoutChangimgState(todo,()=>{
+      this.props.saveToDoWithoutChangingState(todo,()=>{
         this.props.fetchTodos()
       });
     }
