@@ -50,13 +50,36 @@ class Progress extends Component {
       />
     );
   }
+  getIndexAfterDrop(column,index){
+    const todos = this.props.todos,
+      todosInColumn = this.getColumnTodos(column);
+    let placeBefore = true;
+
+    if (index) {
+      placeBefore = false;
+    }
+
+  }
   onDragStart(result){
     this.setState({droppableId: result.source.droppableId});
     console.log('onDragStart',result);
   }
   onDragEnd(result){
-    this.setState({droppableId: null});
     console.log('onDragEnd',result);
+    if(result.destination){
+      const id = result.draggableId,
+        toDoStatus = result.destination.droppableId,
+        todo = this.props.todos.find((todo)=>{return todo.id === id});
+
+      this.setState({droppableId: null});
+
+
+      this.props.saveToDoWithoutChangimgState({...todo,...{toDoStatus}},()=>{
+        this.props.fetchTodos()
+      });
+    }
+
+
   }
   render() {
     return (
