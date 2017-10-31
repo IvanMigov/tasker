@@ -15,7 +15,7 @@ const getListStyle = (isDraggingOver) => {
     // padding: "5px"
     // width: 250,
   }
-}
+};
 
 
 
