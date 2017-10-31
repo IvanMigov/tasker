@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import { Component } from 'react';
 import * as actions from '../actions';
 import StatusColumn   from './status_column';
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-
+import { DragDropContext } from 'react-beautiful-dnd';
 
 const progressStatus = [
   {
@@ -22,11 +21,6 @@ const progressStatus = [
 
 ];
 const filterStatus = 'InProgress';
-const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: "5px",
-  width: 250,
-});
 
 
 
@@ -41,22 +35,11 @@ class Progress extends Component {
   }
   getColumnView(column){
     return (
-      <Droppable droppableId={column.value} key={column.value}>
-        {(provided, snapshot) => (
-          <div
-            ref={provided.innerRef}
-            style={getListStyle(snapshot.isDraggingOver)}
-          >
-            <StatusColumn
-              column = {column}
-              todos = {this.getColumnTodos(column.value)}
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-            />
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
+      <StatusColumn
+        column={column}
+        todos={this.getColumnTodos(column.value)}
+        key={column.value}
+      />
     );
   }
   onDragEnd(result){
