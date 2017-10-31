@@ -61,9 +61,10 @@ class Progress extends Component {
     });
     return index
   }
-  getIndexAfterDrop(column,index){
+  getIndexAfterDrop(column,index, dragId){
     const todos = this.props.todos,
-      todosInColumn = this.getColumnTodos(column);
+      todosInColumn = this.getColumnTodos(column),
+      alreadyInColumn = todosInColumn.find((todo)=>{return todo.id === dragId});
     let placeBefore = true,
       elementToDeal = null,
       newIndex = 0;
@@ -75,10 +76,15 @@ class Progress extends Component {
       }
       if(placeBefore){
         elementToDeal = todosInColumn[0];
-        newIndex = this.getIndexInTodosById(elementToDeal.id)
+        newIndex = this.getIndexInTodosById(elementToDeal.id) - 1;
+        if(newIndex<0){
+          newIndex = 0;
+        }
       }else{
-        elementToDeal = todosInColumn[index - 1];
-        newIndex = this.getIndexInTodosById(elementToDeal.id) + 1;
+        const delta1 = alreadyInColumn ? 0 : -1;
+        const delta2 = alreadyInColumn ? 0 : 1;
+        elementToDeal = todosInColumn[index + delta1];
+        newIndex = this.getIndexInTodosById(elementToDeal.id) + delta2;
       }
     }
 
@@ -94,7 +100,7 @@ class Progress extends Component {
       const id = result.draggableId,
         toDoStatus = result.destination.droppableId,
         todo = this.props.todos.find((todo)=>{return todo.id === id}),
-        indexAfterDrop = this.getIndexAfterDrop(toDoStatus,result.destination.index),
+        indexAfterDrop = this.getIndexAfterDrop(toDoStatus,result.destination.index,id),
         currentIndex = this.getIndexInTodosById(id);
 
       this.setState({droppableId: null});
