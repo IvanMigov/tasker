@@ -42,7 +42,7 @@ class Progress extends Component {
   }
   getColumnTitle(column){
     return (
-      <div className="td-column-label">
+      <div className="td-column-label" key = {column.value}>
         {column.label}
       </div>
 
