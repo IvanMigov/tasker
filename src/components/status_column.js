@@ -44,9 +44,6 @@ class StatusColumn extends Component {
   render() {
     return (
       <div className={this.getClassName()}>
-        <div className="td-column-label">
-          {this.props.column.label}
-        </div>
         <Droppable droppableId={this.props.column.value} key={this.props.column.value}>
           {(provided, snapshot) => (
             <div

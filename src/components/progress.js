@@ -40,6 +40,14 @@ class Progress extends Component {
       return  todo.status ===  filterStatus && todo.toDoStatus ===  column
     });
   }
+  getColumnTitle(column){
+    return (
+      <div className="td-column-label">
+        {column.label}
+      </div>
+
+    );
+  }
   getColumnView(column){
     return (
       <StatusColumn
@@ -124,9 +132,12 @@ class Progress extends Component {
 
       >
         <div className="td-progress" >
-          {
-            progressStatus.map(this.getColumnView.bind(this))
-          }
+          <div className="td-column-labels">
+            {progressStatus.map(this.getColumnTitle.bind(this))}
+          </div>
+          <div className="td-column-lists">
+            {progressStatus.map(this.getColumnView.bind(this))}
+          </div>
         </div>
       </DragDropContext>
     );
