@@ -5,6 +5,8 @@ import * as actions from '../actions';
 import {getImgPriority} from '../utils/todo_item_utils';
 import {withRouter} from "react-router-dom";
 import {Draggable } from 'react-beautiful-dnd';
+import Tooltip from 'react-tooltip-component';
+
 
 
 const getItemStyle = (draggableStyle, isDragging) => ({
@@ -17,11 +19,47 @@ const getItemStyle = (draggableStyle, isDragging) => ({
 
 
 class TodoItemColumn extends Component {
+  constructor() {
+    super();
+    this.state = {
+      buttonPressed: false
+    }
+  }
   showEditTodo() {
     const id = this.props.todo.id;
     this.setState({activeTodo: id});
     this.props.GetToDo(id);
     this.props.history.push(`/progress/${id}`);
+  }
+  closeIssue(e) {
+    const self = this;
+    this.setState({buttonPressed: true});
+    setTimeout(() => {
+      self.props.saveToDo({...self.props.todo, ...{status: 'Closed'}},()=>{
+        self.props.fetchTodos()
+      });
+    }, 1000);
+    e.stopPropagation();
+  }
+
+  getChangeStatus() {
+    // return null;
+
+    if (this.props.todo.toDoStatus === 'Done') {
+
+      return (
+        <Tooltip title='Close Issue' position='left'>
+          <button
+            onClick={this.closeIssue.bind(this)}
+            className={this.state.buttonPressed ? "td-btn-close-issue btn-md hvr-ripple-out" : "td-btn-close-issue btn-md" }
+            data-tip="Start Progress"
+          >
+          </button>
+        </Tooltip>
+
+      );
+    }
+    return null;
   }
   render() {
     const {id, date, label, title, description, priority} = this.props.todo;
@@ -39,13 +77,12 @@ class TodoItemColumn extends Component {
               )}
               {...provided.dragHandleProps}
             >
-              <div
-                className="td-issue-content"
-              >
+              <div className="td-issue-content">
+                {this.getChangeStatus()}
                 <div className="td-row">
-            <span className="td-type" title={priority}>
-              {getImgPriority(priority)}
-            </span>
+                  <span className="td-type" title={priority}>
+                    {getImgPriority(priority)}
+                  </span>
                   <div className="td-key">
                     <span title={id} className="td-key-link">{id}</span>
                   </div>

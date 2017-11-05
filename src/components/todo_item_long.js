@@ -82,7 +82,7 @@ class TodoItemLong extends Component {
   startProgress(e) {
     this.setState({buttonPressed: true});
     setTimeout(() => {
-      this.props.startProgress({...this.props.todo, ...{status: 'InProgress'}})
+      this.props.startProgress({...this.props.todo, ...{status: 'InProgress',toDoStatus: 'ToDo'}})
     }, 1000);
     e.stopPropagation();
   }

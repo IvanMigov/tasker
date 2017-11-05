@@ -100,10 +100,8 @@ class Progress extends Component {
   }
   onDragStart(result){
     this.setState({droppableId: result.source.droppableId});
-    console.log('onDragStart',result);
   }
   onDragEnd(result){
-    console.log('onDragEnd',result);
     if(result.destination){
       const id = result.draggableId,
         toDoStatus = result.destination.droppableId,
