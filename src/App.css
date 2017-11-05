@@ -63,8 +63,8 @@
 .td-progress .td-column-labels,
 .td-progress .td-column-lists{  display: flex  }
 .td-progress .td-column-lists{  width: 100%;  position: relative;  padding-bottom: 10px;  overflow-y: auto;  height: calc(100% - 30px);}
-.td-progress-content{  width: calc(100% - 50px)  }
-.td-progress {  width: 100%;  padding: 2px 10px 0 10px;  justify-content: space-between;  position: relative;  }
+.td-progress-content{  width: calc(100% - 50px); padding-top: 32px }
+.td-progress {  width: 100%;  padding: 2px 10px 0 10px;  justify-content: space-between;  position: relative; margin-top: -32px }
 .td-progress .td-column,
 .td-progress .td-column-label{  min-width: 170px;  box-sizing: border-box;  margin-right: 5px;  padding: 1px 0 0;  vertical-align: top;  width: 33%;  }
 .td-progress .td-column{  min-height: fit-content;  }

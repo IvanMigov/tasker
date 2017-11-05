@@ -4,16 +4,16 @@
       "id": 0,
       "order": [
         259,
-        265,
-        253,
         254,
-        251,
         256,
         261,
         258,
         257,
         250,
+        265,
+        253,
         252,
+        251,
         260,
         262,
         255,
@@ -37,7 +37,7 @@
       "label": "work",
       "status": "InProgress",
       "priority": "normal",
-      "toDoStatus": "Done",
+      "toDoStatus": "ToDo",
       "title": "251 Resolve issue ",
       "description": "Resolve issue in css88"
     },
@@ -57,7 +57,7 @@
       "label": "home",
       "status": "InProgress",
       "priority": "low",
-      "toDoStatus": "Done",
+      "toDoStatus": "ToDo",
       "title": "253 Repair shuffle",
       "description": "Repair kitchen shuffle"
     },
@@ -177,7 +177,7 @@
       "label": "",
       "status": "InProgress",
       "priority": "normal",
-      "toDoStatus": "Done",
+      "toDoStatus": "ToDo",
       "description": "rgtg ",
       "id": 265
     }
